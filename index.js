@@ -283,13 +283,14 @@ bot.on('message', message => {
         if (message.content.startsWith(`${prefix}taverne`)) {
             voiceChannel.join()
             .then(connection => {
+                const stream = ytdl("https://youtu.be/BEm0AjTbsac", { filter: 'audioonly' });
                 musictaverne()
             });
         }
         function musictaverne() {
-            i = Math.floor((Math.random() * 10) + 1);
-            console.log(i); 
-            const dispatcher = message.guild.voiceConnection.playStream(ytdl("https://youtu.be/BEm0AjTbsac", { filter: 'audioonly' }), botOptions)
+            /* i = Math.floor((Math.random() * 10) + 1)
+            console.log(i);*/
+            const dispatcher = connection.playStream(stream, botOptions);
             dispatcher.on('end', () => musictaverne());
         }
         if (message.content.startsWith(`${prefix}combat`)) {
