@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const ytdl = require("ytdl-core");
 const bot = new Discord.Client();
 
+const url = 'https://youtu.be/BEm0AjTbsac';
 const botOptions = { seek: 0, volume: 0.2 };
 
 var cli = new Discord.Client({autoReconnect:true});
@@ -9,103 +10,102 @@ var cli = new Discord.Client({autoReconnect:true});
 var maximum = 0;
 
 var taverne = [
-    /*01*/     "https://www.youtube.com/watch?v=5QuZVNwQR4A",
-    /*02*/     "https://www.youtube.com/watch?v=Q3QlnmEL44U",
-    /*03*/     "https://www.youtube.com/watch?v=TuWLDUqDPoc",
-    /*03*/     "https://youtu.be/AS9K9yLatj8",
-    /*04*/     "https://www.youtube.com/watch?v=Dq0KPexbTak",
-    /*05*/     "https://www.youtube.com/watch?v=i8GIVtCNlCk",
-    /*05*/     "https://www.youtube.com/watch?v=eGPuSQN2t3o",
-    /*06*/     "https://youtu.be/U5u9glfqDsc",
-    /*07*/     "https://youtu.be/4VAeBWeI9JE",
-    /*08*/     "https://youtu.be/2kHmb7ZVh6s",
-    /*09*/     "https://youtu.be/2s5BjJkPfos",
-    /*10*/     "https://youtu.be/WXxy3Y8daks"
+    /*01*/     'https://www.youtube.com/watch?v=5QuZVNwQR4A',
+    /*02*/     'https://www.youtube.com/watch?v=Q3QlnmEL44U',
+    /*03*/     'https://www.youtube.com/watch?v=TuWLDUqDPoc',
+    /*03*/     'https://youtu.be/AS9K9yLatj8',
+    /*04*/     'https://www.youtube.com/watch?v=Dq0KPexbTak',
+    /*05*/     'https://www.youtube.com/watch?v=i8GIVtCNlCk',
+    /*05*/     'https://www.youtube.com/watch?v=eGPuSQN2t3o',
+    /*06*/     'https://youtu.be/U5u9glfqDsc',
+    /*07*/     'https://youtu.be/4VAeBWeI9JE',
+    /*08*/     'https://youtu.be/2kHmb7ZVh6s',
+    /*09*/     'https://youtu.be/2s5BjJkPfos',
+    /*10*/     'https://youtu.be/WXxy3Y8daks'
 
 ];
 
 var combat = [
-    /*01*/     "https://www.youtube.com/watch?v=NsiXbUOPvog",
-    /*02*/     "https://www.youtube.com/watch?v=AWBZDYiqXKE",
-    /*03*/     "https://youtu.be/VDaDgZ7XngA",
-    /*04*/     "https://www.youtube.com/watch?v=aDYy52GHWk4",
-    /*05*/     "https://www.youtube.com/watch?v=82xrQD920oM",
-    /*06*/     "https://www.youtube.com/watch?v=GRiQ_92li1I",
-    /*07*/     "https://www.youtube.com/watch?v=RkRsjDCO1CI",
-    /*08*/     "https://youtu.be/qXVmZuPOzU0",
-    /*09*/     "https://www.youtube.com/watch?v=0aL-vX7xYrE",
-    /*10*/     "https://youtu.be/9d7IDfeZOSI",
+    /*01*/     'https://www.youtube.com/watch?v=NsiXbUOPvog',
+    /*02*/     'https://www.youtube.com/watch?v=AWBZDYiqXKE',
+    /*03*/     'https://youtu.be/VDaDgZ7XngA',
+    /*04*/     'https://www.youtube.com/watch?v=aDYy52GHWk4',
+    /*05*/     'https://www.youtube.com/watch?v=82xrQD920oM',
+    /*06*/     'https://www.youtube.com/watch?v=GRiQ_92li1I',
+    /*07*/     'https://www.youtube.com/watch?v=RkRsjDCO1CI',
+    /*08*/     'https://youtu.be/qXVmZuPOzU0',
+    /*09*/     'https://www.youtube.com/watch?v=0aL-vX7xYrE',
+    /*10*/     'https://youtu.be/9d7IDfeZOSI',
 ];
 
 var aventure = [
-    /*01*/     "https://www.youtube.com/watch?v=28RlnQOKjLE",
-    /*02*/     "https://www.youtube.com/watch?v=LML6SoNE7xE", 
-    /*03*/     "https://youtu.be/-yOZEiHLuVU", 
-    /*04*/     "https://youtu.be/jezXjW1-Wd4",
-    /*05*/     "https://youtu.be/--RU438cUM0",
-    /*06*/     "https://youtu.be/EK3q3Jb3TCQ",
-    /*07*/     "https://youtu.be/DS5pHj436Xc",
-    /*08*/     "https://www.youtube.com/watch?v=1eF2gOBC848",
-    /*09*/     "https://youtu.be/INaM813ohL8",
-    /*10*/     "https://www.youtube.com/watch?v=9SbT71beG0Q",
+    /*01*/     'https://www.youtube.com/watch?v=28RlnQOKjLE',
+    /*02*/     'https://www.youtube.com/watch?v=LML6SoNE7xE', 
+    /*03*/     'https://youtu.be/-yOZEiHLuVU', 
+    /*04*/     'https://youtu.be/jezXjW1-Wd4',
+    /*05*/     'https://youtu.be/--RU438cUM0',
+    /*06*/     'https://youtu.be/EK3q3Jb3TCQ',
+    /*07*/     'https://youtu.be/DS5pHj436Xc',
+    /*08*/     'https://www.youtube.com/watch?v=1eF2gOBC848',
+    /*09*/     'https://youtu.be/INaM813ohL8',
+    /*10*/     'https://www.youtube.com/watch?v=9SbT71beG0Q',
 
 
 ];
 
 var camp = [
-    /*01*/     "https://youtu.be/lvB_nsKXew0",
-    /*02*/     "https://youtu.be/vU8eL2CjzHw",
-    /*03*/     "https://www.youtube.com/watch?v=vqGiiGiVz1o",
-    /*04*/     "https://youtu.be/U62YkXZNs8M",
-    /*05*/     "https://youtu.be/9PJtyCN-AxE",
-    /*06*/     "https://youtu.be/6loWrABr8gA",
-    /*07*/     "https://youtu.be/59Ri26PIOLs",
-    /*08*/     "https://youtu.be/E8mGWYRcmec",
-    /*09*/     "https://youtu.be/BV9Z7LWspSk",
-    /*10*/     "https://youtu.be/6GBZgzi1nYY",     
+    /*01*/     'https://youtu.be/lvB_nsKXew0',
+    /*02*/     'https://youtu.be/vU8eL2CjzHw',
+    /*03*/     'https://www.youtube.com/watch?v=vqGiiGiVz1o',
+    /*04*/     'https://youtu.be/U62YkXZNs8M',
+    /*05*/     'https://youtu.be/9PJtyCN-AxE',
+    /*06*/     'https://youtu.be/6loWrABr8gA',
+    /*07*/     'https://youtu.be/59Ri26PIOLs',
+    /*08*/     'https://youtu.be/E8mGWYRcmec',
+    /*09*/     'https://youtu.be/BV9Z7LWspSk',
+    /*10*/     'https://youtu.be/6GBZgzi1nYY',     
 
 ];
 
 var nuit = [
-    /*01*/     "https://youtu.be/mmZGrvAvPZM",  
-    /*02*/     "https://youtu.be/WRAlNeOHI-g",
-    /*03*/     "https://www.youtube.com/watch?v=INSHJHOiS-Y",
-    /*04*/     "https://www.youtube.com/watch?v=J5ssfLmMJYQ",
-    /*05*/     "https://www.youtube.com/watch?v=qC9Ri2hZsos",
-    /*06*/     "https://www.youtube.com/watch?v=sKZQEH6SFho",
-    /*07*/     "https://www.youtube.com/watch?v=EjTX4TzRaYg",
-    /*09*/     "https://www.youtube.com/watch?v=PrSnBKAGI1A",
-    /*10*/     "https://youtu.be/WyinQVDvWKE"
+    /*01*/     'https://youtu.be/mmZGrvAvPZM',  
+    /*02*/     'https://youtu.be/WRAlNeOHI-g',
+    /*03*/     'https://www.youtube.com/watch?v=INSHJHOiS-Y',
+    /*04*/     'https://www.youtube.com/watch?v=J5ssfLmMJYQ',
+    /*05*/     'https://www.youtube.com/watch?v=qC9Ri2hZsos',
+    /*06*/     'https://www.youtube.com/watch?v=sKZQEH6SFho',
+    /*07*/     'https://www.youtube.com/watch?v=EjTX4TzRaYg',
+    /*09*/     'https://www.youtube.com/watch?v=PrSnBKAGI1A',
+    /*10*/     'https://youtu.be/WyinQVDvWKE'
 ];
 
 var ville = [
-    /*01*/     "https://youtu.be/s5sTI_zBg40",
-    /*02*/     "https://www.youtube.com/watch?v=43JEcN25ZRA",
-    /*03*/     "https://www.youtube.com/watch?v=MckCkMPJVpw",
-    /*04*/     "https://www.youtube.com/watch?v=Eh68Fz2lEas",
-    /*05*/     "https://www.youtube.com/watch?v=E57Iu_XfC2c",
-    /*06*/     "https://youtu.be/mcCUByrQzrc",
-    /*07*/     "https://youtu.be/noFyrf36RL0",
-    /*08*/     "https://youtu.be/NhGgNcBLqNw",
-    /*09*/     "https://youtu.be/C2jtvr0W-Ls",
-    /*10*/     "https://youtu.be/jDZgFn_7Nvs"
+    /*01*/     'https://youtu.be/s5sTI_zBg40',
+    /*02*/     'https://www.youtube.com/watch?v=43JEcN25ZRA',
+    /*03*/     'https://www.youtube.com/watch?v=MckCkMPJVpw',
+    /*04*/     'https://www.youtube.com/watch?v=Eh68Fz2lEas',
+    /*05*/     'https://www.youtube.com/watch?v=E57Iu_XfC2c',
+    /*06*/     'https://youtu.be/mcCUByrQzrc',
+    /*07*/     'https://youtu.be/noFyrf36RL0',
+    /*08*/     'https://youtu.be/NhGgNcBLqNw',
+    /*09*/     'https://youtu.be/C2jtvr0W-Ls',
+    /*10*/     'https://youtu.be/jDZgFn_7Nvs'
 
 
 ];
 
 var triste = [
-    /*01*/     "https://youtu.be/BEm0AjTbsac",
-    /*02*/     "https://www.youtube.com/watch?v=Ipae_XBfyso",
-    /*03*/     "https://youtu.be/vyn8gAYtNu4",
-    /*04*/     "https://www.youtube.com/watch?v=eTa1jHk1Lxc",
-    /*05*/     "https://www.youtube.com/watch?v=LQKspH34BkM",
-    /*06*/     "https://youtu.be/nmMaZXAahCs",
-    /*07*/     "https://youtu.be/nmMaZXAahCs",
-    /*08*/     "https://youtu.be/5A8Iarf8lSY",
-    /*09*/     "https://youtu.be/TRXVO1NuGVU",
-    /*10*/     "https://youtu.be/xNhctnU8YVw",
+    /*01*/     'https://youtu.be/BEm0AjTbsac',
+    /*02*/     'https://www.youtube.com/watch?v=Ipae_XBfyso',
+    /*03*/     'https://youtu.be/vyn8gAYtNu4',
+    /*04*/     'https://www.youtube.com/watch?v=eTa1jHk1Lxc',
+    /*05*/     'https://www.youtube.com/watch?v=LQKspH34BkM',
+    /*06*/     'https://youtu.be/nmMaZXAahCs',
+    /*07*/     'https://youtu.be/nmMaZXAahCs',
+    /*08*/     'https://youtu.be/5A8Iarf8lSY',
+    /*09*/     'https://youtu.be/TRXVO1NuGVU',
+    /*10*/     'https://youtu.be/xNhctnU8YVw',
 ];
-
 
 bot.commands = new Discord.Collection();
 bot.on("error", (e) => console.error(e));
@@ -121,7 +121,6 @@ bot.on('ready', () => {
 
 bot.on('message', message => {
     var prefix = '!';
-    var voiceChannel = message.member.voiceChannel;
     if (message.content.startsWith(`${prefix}jdes`)) {
         message.channel.send("Quel type de dès veux tu jeter ? (2,3,4,5,6,8,10,12,16,20,24,30,100)")
         .then(() => {
@@ -280,96 +279,24 @@ bot.on('message', message => {
         message.channel.send({embed});   
     };  
 
-        if (message.content.startsWith(`${prefix}taverne`)) {
-            const voiceChannel = message.member.voiceChannel;
-            voiceChannel.join()
-            .then(connection => {
-                musictaverne();
-            });
-        }
+    if (message.content.startsWith(`${prefix}taverne`)) {
+        const voiceChannel = message.member.voiceChannel;
+        voiceChannel.join()
+        .then(connection => {
+            musictaverne();
+        });
+    }
 
-        function musictaverne() {
-            /* i = Math.floor((Math.random() * 10) + 1)
-            console.log(i);*/
-            const stream = message.guild.voiceConnection.playStream(ytdl("https://youtu.be/BEm0AjTbsac", { filter: 'audioonly' }), botOptions)
-            .once('end', () => musictaverne());
-        }
+    function musictaverne() {
+        /* i = Math.floor((Math.random() * 10) + 1)
+        console.log(i);*/
+        const stream = message.guild.voiceConnection.playStream(ytdl(url, { filter: 'audioonly' }), botOptions)
+        .once('end', () => musictaverne());
+    }
 
-        if (message.content.startsWith(`${prefix}combat`)) {
-            i = Math.floor((Math.random() * 10) + 1);
-            console.log(i); 
-            voiceChannel.join()
-            .then(connection => {
-                const dispatcher = connection.playStream(ytdl(`${combat[i]}`, { filter: 'audioonly' }), botOptions);
-                dispatcher.on('end', () => {
-                    voiceChannel.leave();
-                });
-            });
-        }
-
-        if (message.content.startsWith(`${prefix}aventure`)) {
-            i = Math.floor((Math.random() * 10) + 1);
-            console.log(i); 
-            voiceChannel.join()
-            .then(connection => {
-                const dispatcher = connection.playStream(ytdl(`${aventure[i]}`, { filter: 'audioonly' }), botOptions);
-                dispatcher.on('end', () => {
-                    voiceChannel.leave();
-                });
-            });
-        }
-
-        if (message.content.startsWith(`${prefix}camp`)) {
-            i = Math.floor((Math.random() * 10) + 1);
-            console.log(i); 
-            voiceChannel.join()
-            .then(connection => {
-                const dispatcher = connection.playStream(ytdl(`${camp[i]}`, { filter: 'audioonly' }), botOptions);
-                dispatcher.on('end', () => {
-                    voiceChannel.leave();
-                });
-            });
-        }
-
-        if (message.content.startsWith(`${prefix}nuit`)) {
-            i = Math.floor((Math.random() * 10) + 1);
-            console.log(i); 
-            voiceChannel.join()
-            .then(connection => {
-                const dispatcher = connection.playStream(ytdl(`${nuit[i]}`, { filter: 'audioonly' }), botOptions);
-                dispatcher.on('end', () => {
-                    voiceChannel.leave();
-                });
-            });
-        }
-
-        if (message.content.startsWith(`${prefix}ville`)) {
-            i = Math.floor((Math.random() * 10) + 1);
-            console.log(i); 
-            voiceChannel.join()
-            .then(connection => {
-                const dispatcher = connection.playStream(ytdl(`${ville[i]}`, { filter: 'audioonly' }), botOptions);
-                dispatcher.on('end', () => {
-                    voiceChannel.leave();
-                });
-            });
-        }
-
-        if (message.content.startsWith(`${prefix}triste`)) {
-            i = Math.floor((Math.random() * mus10icmax) + 1);
-            console.log(i); 
-            voiceChannel.join()
-            .then(connection => {
-                const dispatcher = connection.playStream(ytdl(`${triste[i]}`, { filter: 'audioonly' }), botOptions);
-                dispatcher.on('end', () => {
-                    voiceChannel.leave();
-                });
-            });
-        }
-
-        if (message.content === "$leave") {
-            voiceChannel.leave();
-        }
+    if (message.content === "!leave") {
+        message.member.voiceChannel.leave();
+    }
         
 })
 
