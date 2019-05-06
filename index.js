@@ -284,7 +284,7 @@ bot.on('message', message => {
         console.log(i);*/
         const stream = ytdl("https://youtu.be/BEm0AjTbsac", { filter: 'audioonly' });
         const dispatcher = message.guild.voiceConnection.playStream(stream, botOptions);
-        dispatcher.on('end', () => musictaverne());
+        dispatcher.on('destroy', () => musictaverne());
     }
         if (message.content.startsWith(`${prefix}taverne`)) {
             voiceChannel.join()
