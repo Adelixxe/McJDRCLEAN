@@ -120,6 +120,7 @@ bot.on('ready', () => {
 });
 
 bot.on('message', message => {
+    var voiceChannel = message.member.voiceChannel;
     var prefix = '!';
     if (message.content.startsWith(`${prefix}jdes`)) {
         message.channel.send("Quel type de dès veux tu jeter ? (2,3,4,5,6,8,10,12,16,20,24,30,100)")
