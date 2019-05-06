@@ -119,9 +119,23 @@ bot.on('ready', () => {
     bot.user.setPresence({game: {name: "Jeu de Rôle @Adelixxe", type: 0}});
 });
 
+function musique (){
+    i = Math.floor((Math.random() * 10) + 1);
+    console.log(i); 
+    message.member.voiceChannel.join()
+    .then(connection => {
+        const dispatcher = connection.playStream(ytdl(`${taverne[i]}`, { filter: 'audioonly' }), botOptions);
+        dispatcher.on('end', () => {
+            musique();
+        });
+  });
+}
+
 bot.on('message', message => {
     var prefix = '!';
     var voiceChannel = message.member.voiceChannel;
+
+
     if (message.content.startsWith(`${prefix}jdes`)) {
         message.channel.send("Quel type de dès veux tu jeter ? (2,3,4,5,6,8,10,12,16,20,24,30,100)")
         .then(() => {
@@ -281,15 +295,7 @@ bot.on('message', message => {
     };  
 
         if (message.content.startsWith(`${prefix}taverne`)) {
-            i = Math.floor((Math.random() * 10) + 1);
-            console.log(i); 
-            voiceChannel.join()
-            .then(connection => {
-                const dispatcher = connection.playStream(ytdl(`${taverne[i]}`, { filter: 'audioonly' }), botOptions);
-                dispatcher.on('end', () => {
-                    voiceChannel.leave();
-                });
-            });
+            musique();
         }
 
         if (message.content.startsWith(`${prefix}combat`)) {
