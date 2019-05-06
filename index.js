@@ -285,10 +285,10 @@ bot.on('message', message => {
             console.log(i); 
             voiceChannel.join()
             .then(connection => {
-                musictaverne()
+                musictaverne(i)
             });
         }
-        function musictaverne() {
+        function musictaverne(i) {
             const stream = message.guild.voiceConnection.playStream(ytdl(`${taverne[i]}`, { filter: 'audioonly' }), botOptions)
             .once('end', () => musictaverne());
 }
