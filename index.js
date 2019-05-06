@@ -280,18 +280,20 @@ bot.on('message', message => {
     };  
 
     if (message.content.startsWith(`${prefix}taverne`)) {
+        i = 1;
         const voiceChannel = message.member.voiceChannel;
         voiceChannel.join()
-        .then(connection => {
-            musictaverne();
-        });
+        musictaverne();
+        
     }
 
     function musictaverne() {
-        /* i = Math.floor((Math.random() * 10) + 1)
-        console.log(i);*/
-        const stream = message.guild.voiceConnection.playStream(ytdl(url, { filter: 'audioonly' }), botOptions)
-        .once('end', () => musictaverne());
+        connection => {
+        const dispactcher = connection.playStream(ytdl(url, { filter: 'audioonly' }), botOptions)
+        dispactcher.on('end', () => 
+        musictaverne(),
+        console.log(i + 1));  
+        }
     }
 
     if (message.content === "!leave") {
