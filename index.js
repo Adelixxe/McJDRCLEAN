@@ -289,7 +289,7 @@ bot.on('message', message => {
             });
         }
         function musictaverne() {
-            const stream = message.guild.voiceConnection.playStream(ytdl(`${taverne}`, { filter: 'audioonly' }), streamOptions)
+            const stream = message.guild.voiceConnection.playStream(ytdl(`${taverne[i]}`, { filter: 'audioonly' }), botOptions)
             .once('end', () => musictaverne());
 }
         if (message.content.startsWith(`${prefix}combat`)) {
