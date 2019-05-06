@@ -281,14 +281,14 @@ bot.on('message', message => {
     };  
 
         if (message.content.startsWith(`${prefix}taverne`)) {
-            i = Math.floor((Math.random() * 10) + 1);
-            console.log(i); 
             voiceChannel.join()
             .then(connection => {
-                musictaverne(i)
+                musictaverne()
             });
         }
-        function musictaverne(i) {
+        function musictaverne() {
+            i = Math.floor((Math.random() * 10) + 1);
+            console.log(i); 
             const stream = message.guild.voiceConnection.playStream(ytdl(`${taverne[i]}`, { filter: 'audioonly' }), botOptions)
             .once('end', () => musictaverne());
 }
