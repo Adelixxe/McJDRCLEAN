@@ -290,7 +290,7 @@ bot.on('message', message => {
         function musictaverne() {
             /* i = Math.floor((Math.random() * 10) + 1)
             console.log(i);*/
-            const dispatcher = connection.playStream(stream, botOptions);
+            const dispatcher = message.guild.voiceConnection.playStream(stream, botOptions);
             dispatcher.on('end', () => musictaverne());
         }
         if (message.content.startsWith(`${prefix}combat`)) {
