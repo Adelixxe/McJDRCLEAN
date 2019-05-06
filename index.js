@@ -280,22 +280,16 @@ bot.on('message', message => {
     };  
 
     if (message.content.startsWith(`${prefix}taverne`)) {
-        i = 1;
-        const voiceChannel = message.member.voiceChannel;
+        if (!voiceChannel) return msg.reply('Not in a voice channel.');
         voiceChannel.join()
-        musictaverne();
-        
+            .then(connection => {
+                const dispatcher = connection.playStream(ytdl(url, { filter: 'audioonly' }), clientOptions);
+                dispatcher.on('end', () => {
+                    isReady = true;
+                    voiceChannel.leave();
+                });
+        });
     }
-
-    function musictaverne() {
-        connection => {
-        const dispactcher = connection.playStream(ytdl(url, { filter: 'audioonly' }), botOptions)
-        dispactcher.on('end', () => 
-        musictaverne(),
-        console.log(i + 1));  
-        }
-    }
-
     if (message.content === "!leave") {
         message.member.voiceChannel.leave();
     }
