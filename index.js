@@ -279,20 +279,20 @@ bot.on('message', message => {
         .addField("Santé:", "Bonne santé");
         message.channel.send({embed});   
     };  
-
+    function musictaverne() {
+        /* i = Math.floor((Math.random() * 10) + 1)
+        console.log(i);*/
+        const stream = ytdl("https://youtu.be/BEm0AjTbsac", { filter: 'audioonly' });
+        const dispatcher = message.guild.voiceConnection.playStream(stream, botOptions);
+        dispatcher.on('end', () => musictaverne());
+    }
         if (message.content.startsWith(`${prefix}taverne`)) {
             voiceChannel.join()
             .then(connection => {
-                const stream = ytdl("https://youtu.be/BEm0AjTbsac", { filter: 'audioonly' });
                 musictaverne()
             });
         }
-        function musictaverne() {
-            /* i = Math.floor((Math.random() * 10) + 1)
-            console.log(i);*/
-            const dispatcher = message.guild.voiceConnection.playStream(stream, botOptions);
-            dispatcher.on('end', () => musictaverne());
-        }
+
         if (message.content.startsWith(`${prefix}combat`)) {
             i = Math.floor((Math.random() * 10) + 1);
             console.log(i); 
