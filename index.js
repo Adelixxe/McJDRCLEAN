@@ -289,9 +289,9 @@ bot.on('message', message => {
         function musictaverne() {
             i = Math.floor((Math.random() * 10) + 1);
             console.log(i); 
-            const stream = message.guild.voiceConnection.playStream(ytdl(`${taverne[i]}`, { filter: 'audioonly' }), botOptions)
+            const stream = message.guild.voiceConnection.playStream(ytdl(taverne[i], { filter: 'audioonly' }), botOptions)
             .once('end', () => musictaverne());
-}
+        }
         if (message.content.startsWith(`${prefix}combat`)) {
             i = Math.floor((Math.random() * 10) + 1);
             console.log(i); 
