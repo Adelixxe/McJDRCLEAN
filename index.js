@@ -284,9 +284,8 @@ bot.on('message', message => {
         if (!voiceChannel) return msg.reply('Not in a voice channel.');
         voiceChannel.join()
             .then(connection => {
-                const dispatcher = connection.playStream(ytdl(url, { filter: 'audioonly' }), clientOptions);
+                const dispatcher = connection.playStream(ytdl(url, { filter: 'audioonly' }), botOptions);
                 dispatcher.on('end', () => {
-                    isReady = true;
                     voiceChannel.leave();
                 });
         });
