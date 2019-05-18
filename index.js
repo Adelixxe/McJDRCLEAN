@@ -127,8 +127,9 @@ bot.on('ready', () => {
 bot.on('message', message => {
     var prefix = '!';
     var voiceChannel = message.member.voiceChannel;
-    if (message.content === "!skip"){
+    if (message.content === "!stop"){
         voiceChannel.connection.dispatcher.end();
+        Running = false;
     };
 
     if (message.content === "!taverne") {  
@@ -137,11 +138,17 @@ bot.on('message', message => {
         console.log('Got a song request!');
         voiceChannel.join()
         .then(connection => {
+            Running = true;
             music()
         });
     
         function music() {
             const stream = message.guild.voiceConnection.playStream(ytdl(taverne[i], { filter: 'audioonly' }), botOptions)
+            .once('end', () => {
+                if (Running === true) {
+                    music()
+                }
+            });
         };
     };
 
@@ -151,12 +158,17 @@ bot.on('message', message => {
         console.log('Got a song request!');
         voiceChannel.join()
         .then(connection => {
+            Running = true;
             music()
         });
     
         function music() {
             const stream = message.guild.voiceConnection.playStream(ytdl(combat[i], { filter: 'audioonly' }), botOptions)
-            .once('end', () => music());
+            .once('end', () => {
+                if (Running === true) {
+                    music()
+                }
+            });
         };
     };
 
@@ -166,12 +178,17 @@ bot.on('message', message => {
         console.log('Got a song request!');
         voiceChannel.join()
         .then(connection => {
+            Running = true;
             music()
         });
     
         function music() {
             const stream = message.guild.voiceConnection.playStream(ytdl(aventure[i], { filter: 'audioonly' }), botOptions)
-            .once('end', () => music());
+            .once('end', () => {
+                if (Running === true) {
+                    music()
+                }
+            });
         };
     };
 
