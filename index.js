@@ -127,28 +127,25 @@ bot.on('ready', () => {
 bot.on('message', message => {
     var prefix = '!';
     var voiceChannel = message.member.voiceChannel;
+    if (message.content === "!skip"){
+        voiceChannel.connection.dispatcher.end();
+    };
 
-    if (message.content === "!taverne") {
-        
+    if (message.content === "!taverne") {  
         i = Math.floor((Math.random() * 10) + 1);
         console.log(i); 
         console.log('Got a song request!');
         voiceChannel.join()
         .then(connection => {
             music()
-            Running = true;
         });
     
         function music() {
             const stream = message.guild.voiceConnection.playStream(ytdl(taverne[i], { filter: 'audioonly' }), botOptions)
-            .once('end', () => music());
-            Running = true;
         };
     };
 
     if (message.content === "!combat") {
-        const connection = message.guild.voiceConnection;
-        if (connection.dispatcher) connection.dispatcher.end();
         i = Math.floor((Math.random() * 10) + 1);
         console.log(i); 
         console.log('Got a song request!');
