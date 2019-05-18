@@ -280,8 +280,8 @@ bot.on('message', message => {
         message.channel.send({embed});   
     };  
 
-    if (message.content.startsWith(`${prefix}taverne`)) {
-        if (!voiceChannel) return msg.reply('Not in a voice channel.');
+    if (message.content === "!taverne") {
+        if (!voiceChannel) return message.reply('Not in a voice channel.');
         voiceChannel.join()
             .then(connection => {
                 const dispatcher = connection.playStream(ytdl(url, { filter: 'audioonly' }), botOptions);
