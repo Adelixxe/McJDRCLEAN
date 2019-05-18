@@ -1,8 +1,13 @@
 const Discord = require('discord.js');
-const ytdl = require("ytdl-core");
 const bot = new Discord.Client();
 
+const ytdl = require("ytdl-core");
+const fs = require('fs');
+const ddiff = require('return-deep-diff');
+const path = require('path');
+
 const url = 'https://youtu.be/BEm0AjTbsac';
+
 const botOptions = { seek: 0, volume: 0.2 };
 
 var cli = new Discord.Client({autoReconnect:true});
@@ -283,17 +288,19 @@ bot.on('message', message => {
     if (message.content === "!taverne") {
         if (!voiceChannel) return message.reply('Not in a voice channel.');
         voiceChannel.join()
-            .then(connection => {
-                const dispatcher = connection.playStream(ytdl(url, { filter: 'audioonly' }), botOptions);
-                dispatcher.on('end', () => {
-                    voiceChannel.leave();
-                });
+        .then(connection => {
+            music()
         });
-    }
+
+        function music() {
+            const stream = message.guild.voiceConnection.playStream(ytdl(url, { filter: 'audioonly' }), botOptions)
+            .once('end', () => music());
+    };
+        }
+    
     if (message.content === "!leave") {
         message.member.voiceChannel.leave();
     }
         
 })
-
 bot.login(process.env.BOT_TOKEN);
