@@ -129,6 +129,7 @@ bot.on('message', message => {
     var voiceChannel = message.member.voiceChannel;
 
     if (message.content === "!taverne") {
+        if (Running === true) {voiceChannel.connection.dispatcher.end};
         voiceChannel.connection.dispatcher.end
         i = Math.floor((Math.random() * 10) + 1);
         console.log(i); 
@@ -136,16 +137,19 @@ bot.on('message', message => {
         voiceChannel.join()
         .then(connection => {
             music()
+            Running = true;
         });
     
         function music() {
             const dispatcher = message.guild.voiceConnection.playStream(ytdl(taverne[i], { filter: 'audioonly' }), botOptions)
             dispatcher.on('end', () => music());
+            Running = true;
             
         };
     };
 
     if (message.content === "!combat") {
+        if (Running === true) {voiceChannel.connection.dispatcher.end};
         voiceChannel.connection.dispatcher.end
         i = Math.floor((Math.random() * 10) + 1);
         console.log(i); 
@@ -153,15 +157,18 @@ bot.on('message', message => {
         voiceChannel.join()
         .then(connection => {
             music()
+            Running = true;
         });
     
         function music() {
             const dispatcher = message.guild.voiceConnection.playStream(ytdl(combat[i], { filter: 'audioonly' }), botOptions)
             dispatcher.on('end', () => music());
+            Running = true;
         };
     };
 
     if (message.content === "!aventure") {
+        if (Running === true) {voiceChannel.connection.dispatcher.end};
         voiceChannel.connection.dispatcher.end
         i = Math.floor((Math.random() * 10) + 1);
         console.log(i); 
@@ -169,15 +176,18 @@ bot.on('message', message => {
         voiceChannel.join()
         .then(connection => {
             music()
+            Running = true;
         });
     
         function music() {
             const dispatcher = message.guild.voiceConnection.playStream(ytdl(aventure[i], { filter: 'audioonly' }), botOptions)
             dispatcher.on('end', () => music());
+            Running = true;
         };
     };
 
     if (message.content === "!camp") {
+        if (Running === true) {voiceChannel.connection.dispatcher.end};
         voiceChannel.connection.dispatcher.end
         i = Math.floor((Math.random() * 10) + 1);
         console.log(i); 
@@ -185,31 +195,36 @@ bot.on('message', message => {
         voiceChannel.join()
         .then(connection => {
             music()
+            Running = true;
         });
     
         function music() {
             const dispatcher = message.guild.voiceConnection.playStream(ytdl(camp[i], { filter: 'audioonly' }), botOptions)
             dispatcher.on('end', () => music());
+            Running = true;
         };
     };
 
     if (message.content === "!nuit") {
-        voiceChannel.connection.dispatcher.end
+        if (Running === true) {voiceChannel.connection.dispatcher.end};
         i = Math.floor((Math.random() * 10) + 1);
         console.log(i); 
         console.log('Got a song request!');
         voiceChannel.join()
         .then(connection => {
             music()
+            Running = true;
         });
     
         function music() {
             const dispatcher = message.guild.voiceConnection.playStream(ytdl(nuit[i], { filter: 'audioonly' }), botOptions)
             dispatcher.on('end', () => music());
+            Running = true;
         };
     };
 
     if (message.content === "!ville") {
+        if (Running === true) {voiceChannel.connection.dispatcher.end};
         voiceChannel.connection.dispatcher.end
         i = Math.floor((Math.random() * 10) + 1);
         console.log(i); 
@@ -222,10 +237,12 @@ bot.on('message', message => {
         function music() {
             const dispatcher = message.guild.voiceConnection.playStream(ytdl(ville[i], { filter: 'audioonly' }), botOptions)
             dispatcher.on('end', () => music());
+            Running = true;
         };
     };
 
     if (message.content === "!triste") {
+        if (Running === true) {voiceChannel.connection.dispatcher.end};
         voiceChannel.connection.dispatcher.end
         i = Math.floor((Math.random() * 10) + 1);
         console.log(i); 
@@ -238,6 +255,7 @@ bot.on('message', message => {
         function music() {
             const dispatcher = message.guild.voiceConnection.playStream(ytdl(triste[i], { filter: 'audioonly' }), botOptions)
             dispatcher.on('end', () => music());
+            Running = true;
         };
     };
         
