@@ -136,11 +136,13 @@ bot.on('message', message => {
         voiceChannel.join()
         .then(connection => {
             music()
+            Running = true;
         });
     
         function music() {
             const stream = message.guild.voiceConnection.playStream(ytdl(taverne[i], { filter: 'audioonly' }), botOptions)
             .once('end', () => music());
+            Running = true;
         };
     };
 
