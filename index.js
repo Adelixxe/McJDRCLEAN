@@ -130,7 +130,6 @@ bot.on('message', message => {
 
     if (message.content === "!taverne") {
         if (Running === true) {voiceChannel.connection.dispatcher.end};
-        voiceChannel.connection.dispatcher.end
         i = Math.floor((Math.random() * 10) + 1);
         console.log(i); 
         console.log('Got a song request!');
@@ -150,7 +149,6 @@ bot.on('message', message => {
 
     if (message.content === "!combat") {
         if (Running === true) {voiceChannel.connection.dispatcher.end};
-        voiceChannel.connection.dispatcher.end
         i = Math.floor((Math.random() * 10) + 1);
         console.log(i); 
         console.log('Got a song request!');
@@ -169,7 +167,6 @@ bot.on('message', message => {
 
     if (message.content === "!aventure") {
         if (Running === true) {voiceChannel.connection.dispatcher.end};
-        voiceChannel.connection.dispatcher.end
         i = Math.floor((Math.random() * 10) + 1);
         console.log(i); 
         console.log('Got a song request!');
@@ -188,7 +185,6 @@ bot.on('message', message => {
 
     if (message.content === "!camp") {
         if (Running === true) {voiceChannel.connection.dispatcher.end};
-        voiceChannel.connection.dispatcher.end
         i = Math.floor((Math.random() * 10) + 1);
         console.log(i); 
         console.log('Got a song request!');
@@ -225,7 +221,6 @@ bot.on('message', message => {
 
     if (message.content === "!ville") {
         if (Running === true) {voiceChannel.connection.dispatcher.end};
-        voiceChannel.connection.dispatcher.end
         i = Math.floor((Math.random() * 10) + 1);
         console.log(i); 
         console.log('Got a song request!');
@@ -243,7 +238,6 @@ bot.on('message', message => {
 
     if (message.content === "!triste") {
         if (Running === true) {voiceChannel.connection.dispatcher.end};
-        voiceChannel.connection.dispatcher.end
         i = Math.floor((Math.random() * 10) + 1);
         console.log(i); 
         console.log('Got a song request!');
