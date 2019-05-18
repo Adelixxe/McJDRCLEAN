@@ -2,9 +2,6 @@ const Discord = require('discord.js');
 const bot = new Discord.Client();
 
 const ytdl = require("ytdl-core");
-const fs = require('fs');
-const ddiff = require('return-deep-diff');
-const path = require('path');
 
 const url = 'https://youtu.be/BEm0AjTbsac';
 
@@ -126,22 +123,23 @@ bot.on('ready', () => {
 
 
 
+if (message.content === "!taverne") {
+    var voiceChannel = message.member.voiceChannel;
+    console.log('Got a song request!');
+    voiceChannel.join()
+    .then(connection => {
+        music()
+    });
+
+    function music() {
+        const stream = message.guild.voiceConnection.playStream(ytdl("https://www.youtube.com/watch?v=5QuZVNwQR4A", { filter: 'audioonly' }), botOptions)
+        .once('end', () => music());
+};
+    };
 
 bot.on('message', message => {
-    var voiceChannel = message.member.voiceChannel;
     var prefix = '!';
 
-    if (message.content === "!taverne") {
-        voiceChannel.join()
-        .then(connection => {
-            music()
-        });
-    
-        function music() {
-            const stream = message.guild.voiceConnection.playStream(ytdl("https://youtu.be/mmZGrvAvPZM", { filter: 'audioonly' }), botOptions)
-            .once('end', () => music());
-    };
-        };
 
     if (message.content.startsWith(`${prefix}jdes`)) {
         message.channel.send("Quel type de dès veux tu jeter ? (2,3,4,5,6,8,10,12,16,20,24,30,100)")
