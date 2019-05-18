@@ -124,9 +124,25 @@ bot.on('ready', () => {
     bot.user.setPresence({game: {name: "Jeu de Rôle @Adelixxe", type: 0}});
 });
 
+
+
+
 bot.on('message', message => {
     var voiceChannel = message.member.voiceChannel;
     var prefix = '!';
+    
+    if (message.content === "!taverne") {
+        voiceChannel.join()
+        .then(connection => {
+            music()
+        });
+    
+        function music() {
+            const stream = message.guild.voiceConnection.playStream(ytdl(url, { filter: 'audioonly' }), botOptions)
+            .once('end', () => music());
+    };
+        };
+
     if (message.content.startsWith(`${prefix}jdes`)) {
         message.channel.send("Quel type de dès veux tu jeter ? (2,3,4,5,6,8,10,12,16,20,24,30,100)")
         .then(() => {
@@ -284,23 +300,6 @@ bot.on('message', message => {
         .addField("Santé:", "Bonne santé");
         message.channel.send({embed});   
     };  
-
-    if (message.content === "!taverne") {
-        if (!voiceChannel) return message.reply('Not in a voice channel.');
-        voiceChannel.join()
-        .then(connection => {
-            music()
-        });
-
-        function music() {
-            const stream = message.guild.voiceConnection.playStream(ytdl(url, { filter: 'audioonly' }), botOptions)
-            .once('end', () => music());
-    };
-        }
-    
-    if (message.content === "!leave") {
-        message.member.voiceChannel.leave();
-    }
         
 })
 bot.login(process.env.BOT_TOKEN);
