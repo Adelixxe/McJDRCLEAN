@@ -147,7 +147,8 @@ bot.on('message', message => {
     };
 
     if (message.content === "!combat") {
-        if (Running === true) {voiceChannel.connection.reconnect};
+        const connection = message.guild.voiceConnection;
+        if (connection.dispatcher) connection.dispatcher.end();
         i = Math.floor((Math.random() * 10) + 1);
         console.log(i); 
         console.log('Got a song request!');
