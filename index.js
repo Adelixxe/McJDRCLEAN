@@ -127,7 +127,7 @@ bot.on('ready', () => {
 bot.on('message', message => {
     var prefix = '!';
     var voiceChannel = message.member.voiceChannel;
-    
+
     if (message.content === "!leave"){
         voiceChannel.leave();
     };
@@ -169,7 +169,7 @@ bot.on('message', message => {
         });
     
         function music() {
-            const stream = message.guild.voiceConnection.playStream(ytdl(combat[i], { filter: 'audioonly' }), botOptions)
+            const stream = message.guild.voiceConnection.playStream(ytdl(combat[i], { filter: 'audioonly' }), { seek: 0, volume: 0.05 })
             .once('end', () => {
                 if (Running === true) {
                     music()
