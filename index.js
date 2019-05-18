@@ -123,23 +123,23 @@ bot.on('ready', () => {
 
 
 
-if (message.content === "!taverne") {
-    var voiceChannel = message.member.voiceChannel;
-    console.log('Got a song request!');
-    voiceChannel.join()
-    .then(connection => {
-        music()
-    });
 
-    function music() {
-        const stream = message.guild.voiceConnection.playStream(ytdl("https://www.youtube.com/watch?v=5QuZVNwQR4A", { filter: 'audioonly' }), botOptions)
-        .once('end', () => music());
-};
-    };
 
 bot.on('message', message => {
     var prefix = '!';
-
+    var voiceChannel = message.member.voiceChannel;
+    if (message.content === "!taverne") {
+        console.log('Got a song request!');
+        voiceChannel.join()
+        .then(connection => {
+            music()
+        });
+    
+        function music() {
+            const stream = message.guild.voiceConnection.playStream(ytdl("https://www.youtube.com/watch?v=5QuZVNwQR4A", { filter: 'audioonly' }), botOptions)
+            .once('end', () => music());
+    };
+        };
 
     if (message.content.startsWith(`${prefix}jdes`)) {
         message.channel.send("Quel type de dès veux tu jeter ? (2,3,4,5,6,8,10,12,16,20,24,30,100)")
