@@ -130,7 +130,7 @@ bot.on('ready', () => {
 bot.on('message', message => {
     var voiceChannel = message.member.voiceChannel;
     var prefix = '!';
-    
+
     if (message.content === "!taverne") {
         voiceChannel.join()
         .then(connection => {
@@ -138,7 +138,7 @@ bot.on('message', message => {
         });
     
         function music() {
-            const stream = message.guild.voiceConnection.playStream(ytdl(url, { filter: 'audioonly' }), botOptions)
+            const stream = message.guild.voiceConnection.playStream(ytdl("https://youtu.be/mmZGrvAvPZM", { filter: 'audioonly' }), botOptions)
             .once('end', () => music());
     };
         };
