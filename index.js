@@ -130,6 +130,7 @@ bot.on('message', message => {
     if (message.content === "!stop"){
         voiceChannel.connection.dispatcher.end();
         Running = false;
+        voiceChannel.connection.dispatcher.end();
     };
 
     if (message.content === "!taverne") {  
@@ -198,12 +199,17 @@ bot.on('message', message => {
         console.log('Got a song request!');
         voiceChannel.join()
         .then(connection => {
+            Running = true;
             music()
         });
     
         function music() {
             const stream = message.guild.voiceConnection.playStream(ytdl(camp[i], { filter: 'audioonly' }), botOptions)
-            .once('end', () => music());
+            .once('end', () => {
+                if (Running === true) {
+                    music()
+                }
+            });
         };
     };
 
@@ -213,12 +219,17 @@ bot.on('message', message => {
         console.log('Got a song request!');
         voiceChannel.join()
         .then(connection => {
+            Running = true;
             music()
         });
     
         function music() {
             const stream = message.guild.voiceConnection.playStream(ytdl(nuit[i], { filter: 'audioonly' }), botOptions)
-            .once('end', () => music());
+            .once('end', () => {
+                if (Running === true) {
+                    music()
+                }
+            });
         };
     };
 
@@ -228,12 +239,17 @@ bot.on('message', message => {
         console.log('Got a song request!');
         voiceChannel.join()
         .then(connection => {
+            Running = true;
             music()
         });
     
         function music() {
             const stream = message.guild.voiceConnection.playStream(ytdl(ville[i], { filter: 'audioonly' }), botOptions)
-            .once('end', () => music());
+            .once('end', () => {
+                if (Running === true) {
+                    music()
+                }
+            });
         };
     };
 
@@ -243,12 +259,17 @@ bot.on('message', message => {
         console.log('Got a song request!');
         voiceChannel.join()
         .then(connection => {
+            Running = true;
             music()
         });
     
         function music() {
             const stream = message.guild.voiceConnection.playStream(ytdl(triste[i], { filter: 'audioonly' }), botOptions)
-            .once('end', () => music());
+            .once('end', () => {
+                if (Running === true) {
+                    music()
+                }
+            });
         };
     };
         
