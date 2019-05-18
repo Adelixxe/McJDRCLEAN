@@ -127,6 +127,11 @@ bot.on('ready', () => {
 bot.on('message', message => {
     var prefix = '!';
     var voiceChannel = message.member.voiceChannel;
+    
+    if (message.content === "!leave"){
+        voiceChannel.leave();
+    };
+
     if (message.content === "!stop"){
         voiceChannel.connection.dispatcher.end();
         Running = false;
